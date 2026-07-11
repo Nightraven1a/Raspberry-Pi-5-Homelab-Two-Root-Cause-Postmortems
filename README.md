@@ -38,9 +38,9 @@ The `apt upgrade` events weren't the root cause — they were the trigger that e
 ### Permanent Fixes Implemented
 ```bash
 # 1. Pin the wifi profile to its actual radio — eliminates binding ambiguity
-sudo nmcli connection modify "SpectrumSetup-5C" connection.interface-name wlan0
-sudo nmcli connection modify "SpectrumSetup-5C" connection.autoconnect yes
-sudo nmcli connection modify "SpectrumSetup-5C" connection.autoconnect-priority 10
+sudo nmcli connection modify "Wifi" connection.interface-name wlan0
+sudo nmcli connection modify "Wifi" connection.autoconnect yes
+sudo nmcli connection modify "Wifi" connection.autoconnect-priority 10
 
 # 2. Remove the monitor-capable adapter from NetworkManager entirely
 sudo nmcli device set wlan1 managed no
