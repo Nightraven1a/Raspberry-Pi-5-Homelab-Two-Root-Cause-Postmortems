@@ -1,6 +1,4 @@
 # Raspberry-Pi-5-Homelab-Two-Root-Cause-Postmortems
-Wifi problems and login 
-# Raspberry Pi 5 Homelab: Two Root-Cause Postmortems
 
 **System:** Raspberry Pi 5, Kali Linux ARM64 (kernel `6.12.34+rpt-rpi-v8`)
 **Scope:** Two unrelated, independently diagnosed failures on the same box within one week — documented together because both hinge on the same investigative discipline: verify before you diagnose, and don't let a "close enough" test stand in for the real one.
