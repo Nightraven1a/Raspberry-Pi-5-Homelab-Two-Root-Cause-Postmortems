@@ -20,7 +20,7 @@
 `uname -r` vs. `/lib/modules/` confirmed no kernel/module mismatch. `lsmod` showed `brcmfmac` loaded cleanly. `rfkill list` showed no soft/hard block. `ip link` showed `wlan0` present and `DORMANT` (not crashed). Conclusion: not a driver or kernel-load failure — something more specific was happening at the NetworkManager layer.
 
 **2. Found duplicate connection profiles.**
-`nmcli connection show` revealed five separate saved profiles for the same SSID (`SpectrumSetup-5C` through `SpectrumSetup-5C 4`), all unbound to any device. NetworkManager was cloning a new profile on every failed reconnect instead of reusing the existing one. Deleting the duplicates and reactivating the base profile restored connectivity — temporarily.
+`nmcli connection show` revealed five separate saved profiles for the same SSID (`Wifi` through `Wifi`), all unbound to any device. NetworkManager was cloning a new profile on every failed reconnect instead of reusing the existing one. Deleting the duplicates and reactivating the base profile restored connectivity — temporarily.
 
 **3. Duplicates came back with zero updates applied.**
 Re-ran the deliberate update ritual; `apt` reported nothing changed. Yet a new duplicate profile appeared anyway, now bound to `wlan1` instead of `wlan0`. This ruled out "update" as the root trigger. Actual cause: **the saved profile had no `interface-name` binding**, so whichever radio initiated a connection attempt first could claim it, and any mismatch triggered a clone instead of a reuse.
